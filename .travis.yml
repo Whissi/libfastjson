@@ -8,10 +8,7 @@ env:
   - CFLAGS="-Wall -Wextra -Wformat-security -Wshadow -Wcast-align -Wpointer-arith -Wmissing-format-attribute -Wuninitialized"
 
 before_install:
-  - echo "LANG: $LANG"
-  - echo "LC_ALL: $LC_ALL"
-  - echo "HOME: $HOME"
-  - echo "CWD: $(pwd)"
+  - set
 
 install:
   - sh autogen.sh
