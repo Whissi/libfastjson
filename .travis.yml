@@ -8,8 +8,10 @@ env:
   - CFLAGS="-Wall -Wextra -Wformat-security -Wshadow -Wcast-align -Wpointer-arith -Wmissing-format-attribute -Wuninitialized"
 
 before_install:
-  - echo $LANG
-  - echo $LC_ALL
+  - echo "LANG: $LANG"
+  - echo "LC_ALL: $LC_ALL"
+  - echo "HOME: $HOME"
+  - echo "CWD: `pwd`"
 
 install:
   - sh autogen.sh
@@ -18,7 +20,6 @@ before_script:
   - ./configure
 
 script:
-  - if [ "$CC" == "clang" ] && [ "$TRAVIS_OS_NAME" == "linux" ]; then  scan-build --status-bugs make check TESTS="" && make clean ; fi
   - make
   - export VERBOSE=1
   - make check
