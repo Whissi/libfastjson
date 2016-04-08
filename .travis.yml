@@ -28,7 +28,4 @@ script:
   # most tests currently fail under "make distcheck", but we enable those
   # that work (see also https://github.com/rsyslog/libfastjson/issues/43 )
   - export MAKEOPTS=-j1
-  - if ! make distcheck TESTS="chk_version"; then
-      tree -fa $HOME
-      cat Makefile
-    fi
+  - if ! make distcheck TESTS="chk_version"; then  tree -fa $HOME && cat Makefile ; fi
