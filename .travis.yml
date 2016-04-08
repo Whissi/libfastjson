@@ -3,6 +3,11 @@ language: cpp
 compiler:
   - gcc
 
+addons:
+  apt:
+    packages:
+      - tree
+
 env:
   # Note: we cannot give -Werror, as this confuses ./configure
   - CFLAGS="-Wall -Wextra -Wformat-security -Wshadow -Wcast-align -Wpointer-arith -Wmissing-format-attribute -Wuninitialized"
@@ -23,4 +28,7 @@ script:
   # most tests currently fail under "make distcheck", but we enable those
   # that work (see also https://github.com/rsyslog/libfastjson/issues/43 )
   - export MAKEOPTS=-j1
-  - make distcheck TESTS="chk_version"
+  - if ! make distcheck TESTS="chk_version"; then
+      tree -fa $HOME
+      cat Makefile
+    fi
