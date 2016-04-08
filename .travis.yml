@@ -2,16 +2,6 @@ language: cpp
 
 compiler:
   - gcc
-  - clang
-
-os:
-  - linux
-  - osx
-
-addons:
-  apt:
-    packages:
-      - clang
 
 env:
   # Note: we cannot give -Werror, as this confuses ./configure
@@ -34,4 +24,5 @@ script:
   - make check
   # most tests currently fail under "make distcheck", but we enable those
   # that work (see also https://github.com/rsyslog/libfastjson/issues/43 )
+  - export MAKEOPTS=-j1
   - make distcheck TESTS="chk_version"
