@@ -11,7 +11,7 @@ before_install:
   - echo "LANG: $LANG"
   - echo "LC_ALL: $LC_ALL"
   - echo "HOME: $HOME"
-  - echo "CWD: `pwd`"
+  - echo "CWD: $(pwd)"
 
 install:
   - sh autogen.sh
